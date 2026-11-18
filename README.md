@@ -6,7 +6,7 @@ A Godot-based messaging and voice-chat application. The project is currently in 
 
 ## Project overview
 
-Simple Messaging is intended for direct peer-to-peer messaging and voice communication. The repository currently contains the Godot project and an Android-specific audio plugin.
+Simple Messaging is intended for direct peer-to-peer messaging and voice communication. The repository currently contains the Godot project and an Android-specific native audio plugin.
 
 - Engine: Godot **4.7** (see `project.godot`)
 - Main language: GDScript
@@ -33,7 +33,7 @@ Open the folder containing `project.godot` in Godot 4.7, allow the editor to imp
 
 Android exports need the Android build environment configured in Godot. Install and configure the Android SDK, JDK, and Godot export templates using the official [Godot Android export documentation](https://docs.godotengine.org/en/4.7/tutorials/export/exporting_for_android.html).
 
-This project includes the **AndroidAudioAEC** plugin. Its AAR must be built before exporting:
+This project includes **AndroidAudioAEC**, a native Android plugin. Build its AAR before exporting:
 
 ```sh
 cd addons/AndroidAudioAEC/android
@@ -46,7 +46,7 @@ For a release AAR, use:
 gradle copyReleaseAar
 ```
 
-Then open the Android export preset and enable **Gradle Build**. Export the APK from Godot.
+Then open the Android export preset and enable **Gradle Build**. Godot's Android export process uses Gradle to package the generated AAR into the application APK.
 
 See [AndroidAudioAEC documentation](addons/AndroidAudioAEC/README.md) for build requirements, output locations, and GDScript usage. Generated AAR files are build outputs; do not commit them.
 
@@ -58,7 +58,7 @@ Application/
   VoiceChat/
     v1/                   Voice-chat platform scripts
 addons/
-  AndroidAudioAEC/        Android audio-mode Godot plugin
+  AndroidAudioAEC/        Native Android audio plugin and Godot export integration
 Main.tscn                 Main scene
 PlayerScene.tscn          Player scene
 project.godot             Godot project configuration
