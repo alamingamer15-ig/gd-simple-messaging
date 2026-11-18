@@ -1,30 +1,23 @@
 class_name aec extends Node
 
-static var audio_manager: JavaObject
-static var previous_mode : int = 0
+const PLUGIN_NAME := "AndroidAudioAEC"
 
-static func set_audio_mode(state: int) -> void:
+static func set_audio_mode(mode: int) -> void:
 	if OS.get_name() != "Android":
 		return
-	var android_runtime = Engine.get_singleton("AndroidRuntime")
-	if android_runtime == null:
-		push_error("AndroidRuntime unavailable")
+
+	if not Engine.has_singleton(PLUGIN_NAME):
+		push_error("AndroidAudioAEC plugin is unavailable")
 		return
-	audio_manager = android_runtime.getApplicationContext().getSystemService("audio")
-	if audio_manager == null:
-		push_error("AudioManager unavailable")
-		return
-	previous_mode = audio_manager.getMode()
-	audio_manager.setMode(state)
-	var exception = JavaClassWrapper.get_exception()
-	if exception != null:
-		printerr(exception)
+
+	var plugin = Engine.get_singleton(PLUGIN_NAME)
+	plugin.set_audio_mode(mode)
 
 
 func _exit_tree() -> void:
-	if audio_manager == null:
+	if OS.get_name() != "Android":
 		return
-	audio_manager.setMode(previous_mode)
-	var exception = JavaClassWrapper.get_exception()
-	if exception != null:
-		printerr(exception)
+
+	if Engine.has_singleton(PLUGIN_NAME):
+		var plugin = Engine.get_singleton(PLUGIN_NAME)
+		plugin.restore_audio_mode()
