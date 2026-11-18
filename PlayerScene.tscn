@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bcq2k3jejgw0l"]
+
+[ext_resource type="Script" uid="uid://cjcikqrigugjv" path="res://Application/VoiceChat/v1/VoiceChat.gd" id="1_whk2q"]
+
+[sub_resource type="GDScript" id="GDScript_2u6mx"]
+resource_name = "Script"
+script/source = "extends Node2D
+
+@export var username : String
+
+func _enter_tree() -> void:
+	var id :int = multiplayer.get_unique_id()
+	set_multiplayer_authority(id)
+	print($\".\".username + \" Joined the chat\")
+func _ready() -> void:
+	if not is_multiplayer_authority():
+		return
+	
+"
+
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_g7b7a"]
+mix_rate = 48000.0
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_5shte"]
+
+[node name="PlayerScene(fake)" type="Node2D" unique_id=1664685248]
+script = SubResource("GDScript_2u6mx")
+
+[node name="Node" type="Node" parent="." unique_id=1490184326]
+script = ExtResource("1_whk2q")
+
+[node name="Play" type="AudioStreamPlayer" parent="Node" unique_id=183910885]
+stream = SubResource("AudioStreamGenerator_g7b7a")
+
+[node name="Record" type="AudioStreamPlayer" parent="Node" unique_id=1907299443]
+stream = SubResource("AudioStreamMicrophone_5shte")
