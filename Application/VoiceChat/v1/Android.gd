@@ -1,6 +1,10 @@
 class_name aec extends Node
 
 const PLUGIN_NAME := "AndroidAudioAEC"
+const MODE_NORMAL := 0
+const MODE_RINGTONE := 1
+const MODE_IN_CALL := 2
+const MODE_IN_COMMUNICATION := 3
 
 static func set_audio_mode(mode: int) -> void:
 	if OS.get_name() != "Android":

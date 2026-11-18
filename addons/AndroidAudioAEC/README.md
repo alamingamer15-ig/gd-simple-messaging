@@ -41,11 +41,11 @@ before exporting the Android application.
 ## GDScript
 
 ```gdscript
-aec.set_audio_mode(AudioManager.MODE_IN_COMMUNICATION)
+aec.set_audio_mode(aec.MODE_IN_COMMUNICATION)
 ```
 
-In plain GDScript, use Android's numeric mode constants (for example,
-`MODE_NORMAL = 0` and `MODE_IN_COMMUNICATION = 3`).
+Available mode constants are `MODE_NORMAL`, `MODE_RINGTONE`,
+`MODE_IN_CALL`, and `MODE_IN_COMMUNICATION`.
 
 The Android export preset must use the Gradle build process. The project enables
 this editor plugin through `project.godot`.
