@@ -67,9 +67,7 @@ export_presets.cfg        Export preset configuration
 
 ## Contributing
 
-Bug reports, fixes, documentation, and improvements are welcome. For changes that affect networking or platform-specific behavior, include the Godot version, target platform, steps to reproduce, and relevant logs.
-
-Please keep platform-specific code isolated where practical, and document any new native dependencies or export steps.
+Contributions such as bug fixes, documentation, testing, and improvements are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. See [CONTRIBUTORS.md](CONTRIBUTORS.md) for contributor acknowledgements.
 
 ## Privacy and networking
 
